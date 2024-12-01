@@ -1,0 +1,16 @@
+/*!
+
+=========================================================
+* Chong Lua Dao
+=========================================================
+
+* Product Page: https://chongluadao.vn/
+* Copyright 2021 https://chongluadao.vn/
+* Coded by ChongLuaDao
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+!function(e){var t={};function n(s){if(t[s])return t[s].exports;var r=t[s]={i:s,l:!1,exports:{}};return e[s].call(r.exports,r,r.exports,n),r.l=!0,r.exports}n.m=e,n.c=t,n.d=function(e,t,s){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:s})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var s=Object.create(null);if(n.r(s),Object.defineProperty(s,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)n.d(s,r,function(t){return e[t]}.bind(null,r));return s},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=4)}({4:function(e,t){const n={"-1":"#28a745",0:"#ffeb3c",1:"#cc0000"};[...document.getElementsByClassName("collapsible")].forEach(e=>{e.addEventListener("click",(function(){this.classList.toggle("active");const e=this.nextElementSibling;e.style.maxHeight?e.style.maxHeight=null:e.style.maxHeight=e.scrollHeight+"px"}))}),chrome.tabs.query({active:!0,currentWindow:!0},([e])=>{if(!e)return void console.error("No active tab found");const t=e.id,s=new URL(e.url),r=s.hostname;if(!["https:","http:"].includes(s.protocol))return $("#pluginBody").hide(),void $("#domain_url").text(r);chrome.runtime.sendMessage({type:"GET_TAB_DATA",tabId:t},e=>{if(chrome.runtime.lastError)console.error("Error getting tab data:",chrome.runtime.lastError);else if(e.isWhiteList===r)$("#pluginBody").hide(),$("#isSafe").show(),$("#isSafe .site-url").text(r),chrome.action.setIcon({path:"../assets/cldvn128.png",tabId:t});else if(e.isBlocked===r)$("#pluginBody").hide(),$("#isPhishing").show(),$("#isPhishing .site-url").text(e.isBlocked),chrome.action.setIcon({path:"../assets/cldvn_red.png",tabId:t});else{const t=e.results,s=e.isPhish,o=e.legitimatePercents;for(const e in t){const s=document.createElement("li");s.textContent=e,s.style.backgroundColor=n[t[e]];document.getElementById("features").appendChild(s)}const i=s?"Website này có thể không an toàn.":"Website này có thể an toàn.",a=document.getElementById("site_score"),c=document.getElementById("percentage_content"),l=document.getElementById("site_msg");c.classList.add("p"+parseInt(o)),s?(c.classList.add("orange"),a.classList.add("warning"),l.classList.add("warning")):(a.classList.add("safe"),l.classList.add("safe"));const d=parseInt(o);$("#site_msg").text(isNaN(d)?"...":i),$("#site_score").text(isNaN(d)?"...":parseInt(o)-1+"%"),$("#domain_url").text(r)}})})}});
